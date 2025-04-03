@@ -8,7 +8,7 @@ namespace Flow_Control;
 
 internal class Menu
 {
-    public static int InitializeMenu(string[] arr, int index)
+    public static int Initialize(string[] arr, int index)
     {
         bool indexIsChosen = false;
 
