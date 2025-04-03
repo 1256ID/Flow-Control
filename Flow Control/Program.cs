@@ -20,6 +20,7 @@
 
             while (programIsRunning)
             {
+                Console.Clear();
                 index = Menu.Initialize
                 (
                     [
@@ -36,9 +37,9 @@
                 Samtliga cases anropar metoden One(), Two() och Three() som hanterar menyvalens logik. 
 
                 Eftersom att jag använder mig av en array för visa menyn
-                så har jag valt lägga menyvalet längst ned pga indexering.
+                så har jag valt att lägga menyvalet längst ned pga indexering.
 
-                Hantering av felaktig input hanteras av metoden
+                Hantering av felaktig input hanteras av metoden 
                 */
 
                 switch (index)
