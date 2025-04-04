@@ -20,17 +20,18 @@
 
             while (programIsRunning)
             {
-                Console.Clear();
+                Console.Clear();                           
                 index = Menu.Initialize
                 (
                     [
-                        "1. Menyval 1",
+                        "1. Ungdom eller pensionär",
                         "2. Menyval 2",
                         "3. Menyval 3",
                         "4. Avsluta program"
 
-                    ], index
+                    ], index, "Huvudmeny"
                 );
+               
 
                 /* 
                 En switch-statement som hanterar samtliga menyval

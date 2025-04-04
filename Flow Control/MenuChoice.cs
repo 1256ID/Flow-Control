@@ -8,42 +8,62 @@ namespace Flow_Control;
 
 internal class MenuChoice
 {
+    public string returnToMenuText = "\n\nKlicka på valfri tangent för att återvänta till menyn...";
     public void One()
     {
         int index = 0;
         bool cinemaIsActive = true;
+        int age;
+
+
 
         while (cinemaIsActive)
         {
-            Console.WriteLine("Biljettförsäljning för bio\n");
+            Console.Clear();           
             index = Menu.Initialize
                 (
                     [
-                        "Räkna ut pris för en person",
-                        "Räkna ut pris för grupp",
-                        "Gå tillbaka till huvudmenyn"
+                        "1. Räkna ut pris för en person",
+                        "2. Räkna ut pris för grupp",
+                        "3. Gå tillbaka till huvudmenyn"
                     ]
 
-                    , index
+                    , index, "Ungdom eller pensionär"
                 );
 
 
           switch (index)
             {
+
                 case 0:
-                    int age = GetAge();
+                    Console.Clear();
+                    age = GetNumericalInputFromUser(true);
                     int calculatedPrice = CalculatePricePerPerson(age);
-                    string output = GetPriceAsMessage(age);
-                    Console.WriteLine(output);
+                    Console.WriteLine(GetPriceAsMessage(calculatedPrice));
+                    Console.WriteLine(returnToMenuText);
+                    Console.ReadLine();
                 break;
 
                 case 1:
+                    Console.Clear();
+                    int totalPrice = 0;
                     Console.Write("Ange hur många ni är: ");
-                    int groupCount;
-                    bool 
-                    groupCount = int.TryParse(Console.ReadLine(), out groupCount);
+                    Console.Clear();
+                    int groupCount = GetNumericalInputFromUser(false);
+                    for (int i = 0; i < groupCount; i++)
+                    {
+                        age = GetNumericalInputFromUser(true);
+                        totalPrice += CalculatePricePerPerson(age);
+                    }
 
-                    
+                    Console.Clear();
+                    Console.WriteLine("Antalet personer: " + groupCount);
+                    Console.WriteLine(GetPriceAsMessage(totalPrice));
+                    Console.WriteLine(returnToMenuText);
+                    Console.ReadLine();
+
+
+
                 break;
 
                 case 2:
@@ -69,68 +89,77 @@ internal class MenuChoice
 
     }
 
-    public static int GetAge()
+    public static int GetNumericalInputFromUser(bool isInputAge)
     {
         int output = 0;
         bool waitingForCorrectInput = true;
         string continueText = "Klicka på valfri tangent för att fortsätta";
-
-        while (waitingForCorrectInput)
+        string attributeName = "";
+        if (isInputAge)
         {
-            try
+            attributeName = "ålder";
+        }
+        else 
+        {
+            attributeName = "antalet personer";
+        }
+
+            while (waitingForCorrectInput)
             {
-                Console.Write("Var vänlig och fyll i ålder: ");
-                string? input = Console.ReadLine();
-
-                if (string.IsNullOrEmpty(input))
+                try
                 {
-                    Console.WriteLine
-                        ("Var vänlig och använd siffor för att ange ålder\n\n"
-                        + continueText);
-                    Console.ReadLine();
-                    Console.Clear();
-                }
+                    Console.Write("Var vänlig och fyll i " + attributeName + ": ");
+                    string? input = Console.ReadLine();
 
-                else
-                {
-                    bool validInput = int.TryParse(Console.ReadLine(), out output);
-                    if (validInput)
-                    {
-                        if (output < 0)
-                        {
-                            Console.WriteLine
-                                ("Var vänlig och fyll i en giltig ålder\n\n"
-                                + continueText);
-                            Console.ReadLine();
-                            Console.Clear();
-                        }
-
-                        else
-                        {
-                            waitingForCorrectInput = false;
-                        }
-                    }
-
-                    else
+                    if (string.IsNullOrEmpty(input))
                     {
                         Console.WriteLine
-                            ("Var vänlig och försök igen\n\n"
+                            ("Var vänlig och använd siffor för att ange " + attributeName + "\n\n"
                             + continueText);
                         Console.ReadLine();
                         Console.Clear();
                     }
+
+                    else
+                    {
+                        bool validInput = int.TryParse(input, out output);
+                        if (validInput)
+                        {
+                            if (output < 0)
+                            {
+                                Console.WriteLine
+                                    ("Var vänlig och undvik negativa tal\n\n"
+                                    + continueText);
+                                Console.ReadLine();
+                                Console.Clear();
+                            }
+
+                            else
+                            {
+                                waitingForCorrectInput = false;
+                            }
+                        }
+
+                        else
+                        {
+                            Console.WriteLine
+                                ("Var vänlig och försök igen\n\n"
+                                + continueText);
+                            Console.ReadLine();
+                            Console.Clear();
+                        }
+                    }
+                }
+
+                catch
+                {
+                    Console.WriteLine
+                        ("Var vänlig och försök igen\n\n"
+                        + continueText);
+                    Console.ReadLine();
+                    Console.Clear();
                 }
             }
-
-            catch
-            {
-                Console.WriteLine
-                    ("Var vänlig och försök igen\n\n"
-                    + continueText);
-                Console.ReadLine();
-                Console.Clear();
-            }
-        }
 
         return output;
 

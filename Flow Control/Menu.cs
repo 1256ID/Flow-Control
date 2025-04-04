@@ -8,13 +8,24 @@ namespace Flow_Control;
 
 internal class Menu
 {
-    public static int Initialize(string[] arr, int index)
+    public static int Initialize(string[] arr, int index, string menuTitle)
     {
         bool indexIsChosen = false;
+
+        int maxAmountOfChars = arr.Max(arr => arr.Length) + 7;
+        string menuOutliners = "";
+
+        for (int i = 0; i< maxAmountOfChars; i++)
+        {
+            menuOutliners += "*";
+        }
+
 
         while (!indexIsChosen)
         {
             Console.Clear();
+            Console.WriteLine(menuTitle + "\n");
+            Console.WriteLine(menuOutliners);
 
             for (int i = 0; i < arr.Length; i++)
             {
@@ -40,7 +51,7 @@ internal class Menu
                 Console.Write("\n");
             }
 
-
+            Console.WriteLine(menuOutliners);
 
             // Läser in input från användare
 
