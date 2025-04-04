@@ -8,7 +8,8 @@ namespace Flow_Control
 {
     internal class AppUtilities
     {
-        public static int GetNumericalInputFromUser(bool isInputAge)
+        public static string tryAgainText = "Var vänlig och försök igen\n\n";
+        public static int PromptUserForNumericalInput(bool isInputAge)
         {
             int output = 0;
             bool waitingForCorrectInput = true;
@@ -47,8 +48,7 @@ namespace Flow_Control
                             if (output < 0)
                             {
                                 Console.WriteLine
-                                    ("Var vänlig och undvik negativa tal\n\n"
-                                    + continueText);
+                                    ("Var vänlig och undvik negativa tal\n\n" + continueText);
                                 Console.ReadLine();
                                 Console.Clear();
                             }
@@ -61,9 +61,7 @@ namespace Flow_Control
 
                         else
                         {
-                            Console.WriteLine
-                                ("Var vänlig och försök igen\n\n"
-                                + continueText);
+                            Console.WriteLine(tryAgainText + continueText);
                             Console.ReadLine();
                             Console.Clear();
                         }
@@ -72,9 +70,7 @@ namespace Flow_Control
 
                 catch
                 {
-                    Console.WriteLine
-                        ("Var vänlig och försök igen\n\n"
-                        + continueText);
+                    Console.WriteLine(tryAgainText + continueText);
                     Console.ReadLine();
                     Console.Clear();
                 }
@@ -84,7 +80,47 @@ namespace Flow_Control
 
         }
 
-        public int CalculatePricePerPerson(int age)
+        public static string PromptUserForTextInput()
+        {
+            string output = "";
+            bool waitingForCorrectInput = true;
+
+            while (waitingForCorrectInput)
+            {           
+                try
+                {
+                    Console.Clear();
+                    Console.Write("Skriv in valfri text: ");
+                    string? input = Console.ReadLine();
+                    if (string.IsNullOrEmpty(input))
+                    {
+                        Console.WriteLine("Inmatningen får inte vara tom\n\n" + tryAgainText);
+                        Console.ReadLine();
+                    }
+
+                    else
+                    {
+                        if (input != null)
+                        {
+                            output = input;
+                        }
+                        
+                        waitingForCorrectInput = false;                     
+                    }
+                }
+
+                catch
+                {
+                    Console.WriteLine("Ogiltig inmatning\n\n" + tryAgainText);
+                    Console.ReadLine();
+                }
+            }
+                 
+            return output;
+                      
+        }
+
+        public static int CalculatePricePerPerson(int age)
         {
             if (age < 20)
             {
@@ -102,7 +138,7 @@ namespace Flow_Control
             }
         }
 
-        public string GetPriceAsMessage(int price)
+        public static string GetPriceAsMessage(int price)
         {
             if (price == 80)
             {

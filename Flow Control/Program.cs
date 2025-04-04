@@ -25,7 +25,7 @@
                 (
                     [
                         "1. Ungdom eller pensionär",
-                        "2. Iterera 10 gånger",
+                        "2. Iterera inmatning 10 gånger",
                         "3. Menyval 3",
                         "4. Avsluta program"
 
@@ -35,12 +35,12 @@
 
                 /* 
                 En switch-statement som hanterar samtliga menyval
-                Samtliga cases anropar metoden One(), Two() och Three() som hanterar menyvalens logik. 
+                Samtliga cases anropar metoden One(), Two() och Three() som i sin del hanterar menyvalens logik. 
 
-                Eftersom att jag använder mig av en array för visa menyn
+                Eftersom att menyn använder sig av en array för visa menyn
                 så har jag valt att lägga menyvalet längst ned pga indexering.
 
-                Hantering av felaktig input hanteras i metoden "Initialize()"
+                Hantering av felaktig input hanteras i metoden Display()
                 */
 
                 switch (index)

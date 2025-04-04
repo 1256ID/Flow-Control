@@ -8,7 +8,6 @@ namespace Flow_Control;
 
 internal class MenuChoice
 {
-    AppUtilities appUtilities = new AppUtilities();
     public string returnToMenuText = "\n\nKlicka på valfri tangent för att återvänta till menyn...";
     public void One()
     {
@@ -33,9 +32,9 @@ internal class MenuChoice
             {
                 case 0:
                     Console.Clear();
-                    age = AppUtilities.GetNumericalInputFromUser(true);
-                    int calculatedPrice = appUtilities.CalculatePricePerPerson(age);
-                    Console.WriteLine(appUtilities.GetPriceAsMessage(calculatedPrice));
+                    age = AppUtilities.PromptUserForNumericalInput(true);
+                    int calculatedPrice = AppUtilities.CalculatePricePerPerson(age);
+                    Console.WriteLine(AppUtilities.GetPriceAsMessage(calculatedPrice));
                     Console.WriteLine(returnToMenuText);
                     Console.ReadLine();
                 break;
@@ -45,16 +44,16 @@ internal class MenuChoice
                     int totalPrice = 0;
                     Console.Write("Ange hur många ni är: ");
                     Console.Clear();
-                    int groupCount = AppUtilities.GetNumericalInputFromUser(false);
+                    int groupCount = AppUtilities.PromptUserForNumericalInput(false);
                     for (int i = 0; i < groupCount; i++)
                     {
-                        age = AppUtilities.GetNumericalInputFromUser(true);
-                        totalPrice += appUtilities.CalculatePricePerPerson(age);
+                        age = AppUtilities.PromptUserForNumericalInput(true);
+                        totalPrice += AppUtilities.CalculatePricePerPerson(age);
                     }
 
                     Console.Clear();
                     Console.WriteLine("Antalet personer: " + groupCount);
-                    Console.WriteLine(appUtilities.GetPriceAsMessage(totalPrice));
+                    Console.WriteLine(AppUtilities.GetPriceAsMessage(totalPrice));
                     Console.WriteLine(returnToMenuText);
                     Console.ReadLine();
                 break;
@@ -68,11 +67,22 @@ internal class MenuChoice
 
     public void Two()
     {
+        string input = AppUtilities.PromptUserForTextInput();
+        Console.Clear();
 
+        for (int i = 1; i <= 10; i++)
+        {
+            Console.Write(i + ". " + input + " ");
+        }
+
+        Console.WriteLine("\n\n" + returnToMenuText);
+        Console.ReadLine();
     }
 
     public void Three()
     {
+        string input = AppUtilities.PromptUserForTextInput();
+
 
     }
 
