@@ -119,8 +119,39 @@ namespace Flow_Control
             return output;
                       
         }
+  
+        public static void CalculateTicketPrice(bool InGroup)
+        {
+            Console.Clear();
+            int groupCount = 1;
+            int totalPrice = 0;
+            int age = 0;
+            if (InGroup)
+            {
+                Console.Write("Ange hur många ni är: ");
+                Console.Clear();
+                groupCount = PromptUserForNumericalInput(false);
+            }
+         
+            for (int i = 0; i < groupCount; i++)
+            {
+                age = PromptUserForNumericalInput(true);
+                totalPrice += GetPrice(age);
 
-        public static int CalculatePricePerPerson(int age)
+            }
+
+            Console.Clear();
+            if (InGroup)
+            {
+                Console.WriteLine("Antalet personer: " + groupCount);
+            }
+         
+            Console.WriteLine(GetOutputFromPrice(totalPrice));
+            Console.WriteLine(MenuChoice.returnToMenuText);
+            Console.ReadLine();
+        }
+
+        public static int GetPrice(int age)
         {
             if (age < 20)
             {
@@ -138,7 +169,7 @@ namespace Flow_Control
             }
         }
 
-        public static string GetPriceAsMessage(int price)
+        public static string GetOutputFromPrice(int price)
         {
             if (price == 80)
             {

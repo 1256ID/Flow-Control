@@ -8,7 +8,7 @@ namespace Flow_Control;
 
 internal class MenuChoice
 {
-    public string returnToMenuText = "\n\nKlicka på valfri tangent för att återvänta till menyn...";
+    public static string returnToMenuText = "\n\nKlicka på valfri tangent för att återvänta till menyn...";
     public void One()
     {
         int index = 0;
@@ -31,31 +31,11 @@ internal class MenuChoice
           switch (index)
             {
                 case 0:
-                    Console.Clear();
-                    age = AppUtilities.PromptUserForNumericalInput(true);
-                    int calculatedPrice = AppUtilities.CalculatePricePerPerson(age);
-                    Console.WriteLine(AppUtilities.GetPriceAsMessage(calculatedPrice));
-                    Console.WriteLine(returnToMenuText);
-                    Console.ReadLine();
+                    AppUtilities.CalculateTicketPrice(false);
                 break;
 
                 case 1:
-                    Console.Clear();
-                    int totalPrice = 0;
-                    Console.Write("Ange hur många ni är: ");
-                    Console.Clear();
-                    int groupCount = AppUtilities.PromptUserForNumericalInput(false);
-                    for (int i = 0; i < groupCount; i++)
-                    {
-                        age = AppUtilities.PromptUserForNumericalInput(true);
-                        totalPrice += AppUtilities.CalculatePricePerPerson(age);
-                    }
-
-                    Console.Clear();
-                    Console.WriteLine("Antalet personer: " + groupCount);
-                    Console.WriteLine(AppUtilities.GetPriceAsMessage(totalPrice));
-                    Console.WriteLine(returnToMenuText);
-                    Console.ReadLine();
+                    AppUtilities.CalculateTicketPrice(true);
                 break;
 
                 case 2:
