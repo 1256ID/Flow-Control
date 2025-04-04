@@ -23,30 +23,37 @@ internal class MenuChoice
                         "Räkna ut pris för grupp",
                         "Gå tillbaka till huvudmenyn"
                     ]
-                    
+
                     , index
                 );
 
 
-            if (index == 0)
+          switch (index)
             {
+                case 0:
+                    int age = GetAge();
+                    int calculatedPrice = CalculatePricePerPerson(age);
+                    string output = GetPriceAsMessage(age);
+                    Console.WriteLine(output);
+                break;
 
+                case 1:
+                    Console.Write("Ange hur många ni är: ");
+                    int groupCount;
+                    bool 
+                    groupCount = int.TryParse(Console.ReadLine(), out groupCount);
+
+                    
+                break;
+
+                case 2:
+                    cinemaIsActive = false;
+                break;
             }
 
-            else if (index == 1)
-            {
-
-            }
 
 
-            else
-            {
 
-            }
-
-            
-
-            
 
 
         }
@@ -68,7 +75,7 @@ internal class MenuChoice
         bool waitingForCorrectInput = true;
         string continueText = "Klicka på valfri tangent för att fortsätta";
 
-        while (waitingForCorrectInput) 
+        while (waitingForCorrectInput)
         {
             try
             {
@@ -78,7 +85,7 @@ internal class MenuChoice
                 if (string.IsNullOrEmpty(input))
                 {
                     Console.WriteLine
-                        ("Var vänlig och använd siffor för att ange ålder\n\n" 
+                        ("Var vänlig och använd siffor för att ange ålder\n\n"
                         + continueText);
                     Console.ReadLine();
                     Console.Clear();
@@ -87,8 +94,8 @@ internal class MenuChoice
                 else
                 {
                     bool validInput = int.TryParse(Console.ReadLine(), out output);
-                    if (validInput) 
-                    { 
+                    if (validInput)
+                    {
                         if (output < 0)
                         {
                             Console.WriteLine
@@ -107,16 +114,12 @@ internal class MenuChoice
                     else
                     {
                         Console.WriteLine
-                            ("Var vänlig och försök igen\n\n" 
+                            ("Var vänlig och försök igen\n\n"
                             + continueText);
                         Console.ReadLine();
                         Console.Clear();
                     }
-
                 }
-
-                    
-
             }
 
             catch
@@ -128,12 +131,49 @@ internal class MenuChoice
                 Console.Clear();
             }
         }
-        
-        
-
-
 
         return output;
+
     }
 
+    public int CalculatePricePerPerson(int age)
+    {
+        if (age < 20)
+        {
+            return 80;
+        }
+
+        else if (age > 64)
+        {
+            return 90;
+        }
+
+        else
+        {
+            return 120;
+        }
+    }
+
+    public string GetPriceAsMessage (int price)
+    {       
+        if (price == 80)
+        {
+            return "Ungdomspris: " + price;
+        }
+
+        else if (price == 90)
+        {
+            return "Pensionärspris: " + price;
+        }
+
+        else if (price == 120)
+        {
+            return "Standardpris: " + price;
+        }
+
+        else
+        {
+            return "Total kostnad: " + price;
+        }
+    }
 }

@@ -24,10 +24,10 @@
                 index = Menu.Initialize
                 (
                     [
-                        "Menyval 1",
-                        "Menyval 2",
-                        "Menyval 3",
-                        "Avsluta program"
+                        "1. Menyval 1",
+                        "2. Menyval 2",
+                        "3. Menyval 3",
+                        "4. Avsluta program"
 
                     ], index
                 );
@@ -39,35 +39,30 @@
                 Eftersom att jag använder mig av en array för visa menyn
                 så har jag valt att lägga menyvalet längst ned pga indexering.
 
-                Hantering av felaktig input hanteras av metoden 
+                Hantering av felaktig input hanteras i metoden "Initialize()"
                 */
 
                 switch (index)
                 {
-                 
+
                     case 0:
                         menuChoice.One();
-                        break;                  
+                        break;
                     case 1:
                         menuChoice.Two();
                         break;
-                   
+
                     case 2:
                         menuChoice.Three();
                         break;
-                   
+
                     case 3:
                         programIsRunning = false;
                         break;
-                };
-                
+                };               
             }
 
-
-
-            Environment.Exit(1);
-
-
+            Environment.Exit(0);
 
         }
     }

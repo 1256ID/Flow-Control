@@ -14,27 +14,33 @@ internal class Menu
 
         while (!indexIsChosen)
         {
-            for (int i = 0; i < arr.Length;)
+            Console.Clear();
+
+            for (int i = 0; i < arr.Length; i++)
             {
+
                 string output = arr[i];
-                string arrow = " <---";
 
                 if (i == index)
                 {
-                    Console.Write(" ");
+                    Console.Write("  ");
                     Console.BackgroundColor = ConsoleColor.White;
-                }
-
-                else
-                {
-
-                    Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.Black;
                 }
 
                 Console.Write(arr[i]);
 
+                Console.ResetColor();
 
+                if (i == index)
+                {
+                    Console.Write(" <---");
+                }
+
+                Console.Write("\n");
             }
+
+
 
             // Läser in input från användare
 
@@ -42,34 +48,42 @@ internal class Menu
 
             // Justerar index efter vilken piltangent som används eller ifall användaren väljer att gå vidare
 
-            if (input.Equals(ConsoleKey.UpArrow))
+            switch (input.Key)
             {
-                if (index != 0)
-                {
-                    index--;
-                }
-            }
 
-            else if (input.Equals(ConsoleKey.DownArrow))
-            {
-                if (index < arr.Length - 1)
-                {
-                    index++;
-                }
-            }
+                case ConsoleKey.UpArrow:
+                    if (index != 0)
+                    {
+                        index--;
+                    }
+                    break;
 
-            else if (input.Equals(ConsoleKey.Enter))
-            {
-                if (index < arr.Length - 1)
-                {
-                    index = -2;
-                }
-            }
+                case ConsoleKey.DownArrow:
+                    if (index < arr.Length - 1)
+                    {
+                        index++;
+                    }
+                    break;
 
-
-            
+                case ConsoleKey.Enter:
+                    if (index < arr.Length)
+                    {
+                        indexIsChosen = true;
+                    }
+                    break;
 
 
+                default:
+                    Console.Clear();
+                    Console.WriteLine
+                        (
+                            "Felaktiga tangenter har använts, var vänlig och använd " +
+                            " piltangenterna och ENTER för att bekräfta ett val.\n\n" +
+                            "Klicka på valfri tangent för att fortsätta..."
+                        );
+                    Console.ReadLine();
+                    break;
+            }         
         }
 
         return index;
