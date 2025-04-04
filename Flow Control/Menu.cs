@@ -8,10 +8,10 @@ namespace Flow_Control;
 
 internal class Menu
 {
-    public static int Initialize(string[] arr, int index, string menuTitle)
+    public static int Display(string[] arr, int index, string menuTitle)
     {
         bool indexIsChosen = false;
-
+        
         int maxAmountOfChars = arr.Max(arr => arr.Length) + 7;
         string menuOutliners = "";
 
@@ -19,7 +19,6 @@ internal class Menu
         {
             menuOutliners += "*";
         }
-
 
         while (!indexIsChosen)
         {
@@ -89,7 +88,7 @@ internal class Menu
                     Console.WriteLine
                         (
                             "Felaktiga tangenter har använts, var vänlig och använd " +
-                            " piltangenterna och ENTER för att bekräfta ett val.\n\n" +
+                            "piltangenterna och ENTER för att bekräfta ett val.\n\n" +
                             "Klicka på valfri tangent för att fortsätta..."
                         );
                     Console.ReadLine();

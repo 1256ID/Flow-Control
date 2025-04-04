@@ -21,11 +21,11 @@
             while (programIsRunning)
             {
                 Console.Clear();                           
-                index = Menu.Initialize
+                index = Menu.Display
                 (
                     [
                         "1. Ungdom eller pensionär",
-                        "2. Menyval 2",
+                        "2. Iterera 10 gånger",
                         "3. Menyval 3",
                         "4. Avsluta program"
 
