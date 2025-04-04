@@ -9,11 +9,10 @@ namespace Flow_Control;
 internal class MenuChoice
 {
     public static string returnToMenuText = "\n\nKlicka på valfri tangent för att återvänta till menyn...";
-    public void One()
+    public static void One()
     {
         int index = 0;
         bool cinemaIsActive = true;
-        int age;
 
         while (cinemaIsActive)
         {
@@ -45,7 +44,7 @@ internal class MenuChoice
         }
     }
 
-    public void Two()
+    public static void Two()
     {
         string input = AppUtilities.PromptUserForTextInput();
         Console.Clear();
@@ -59,12 +58,22 @@ internal class MenuChoice
         Console.ReadLine();
     }
 
-    public void Three()
+    public static void Three()
     {
-        string input = AppUtilities.PromptUserForTextInput();
+        string outputMessage = "Var vänlig och använd minst 3 ord.";
+        var input = AppUtilities.PromptUserForTextInput();
+        input = AppUtilities.RemoveFirstAndLastSpace(input);
+        input = AppUtilities.RemoveWhereSpaceOccursMoreThanOnce(input);     
 
+        string[] stringArray = input.Split(" ");
 
+        if (stringArray.Length >= 3) 
+        {
+            outputMessage = stringArray[^1];
+        }
+
+        Console.WriteLine(outputMessage);
+        Console.WriteLine(returnToMenuText);
+        Console.ReadLine();
     }
-
-  
 }

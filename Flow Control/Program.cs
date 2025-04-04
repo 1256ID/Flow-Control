@@ -26,7 +26,7 @@
                     [
                         "1. Ungdom eller pensionär",
                         "2. Iterera inmatning 10 gånger",
-                        "3. Menyval 3",
+                        "3. Skriv ut sista ordet",
                         "4. Avsluta program"
 
                     ], index, "Huvudmeny"
@@ -45,16 +45,15 @@
 
                 switch (index)
                 {
-
                     case 0:
-                        menuChoice.One();
+                        MenuChoice.One();
                         break;
                     case 1:
-                        menuChoice.Two();
+                        MenuChoice.Two();
                         break;
 
                     case 2:
-                        menuChoice.Three();
+                        MenuChoice.Three();
                         break;
 
                     case 3:

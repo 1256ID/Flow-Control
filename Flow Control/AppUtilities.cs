@@ -8,22 +8,21 @@ namespace Flow_Control
 {
     internal class AppUtilities
     {
-        public static string tryAgainText = "Var vänlig och försök igen\n\n";
-        public static int PromptUserForNumericalInput(bool isInputAge)
+        public static string tryAgainText = "Var vänlig och försök igen";
+        public static string continueText = "\n\nKlicka på valfri tangent för att fortsätta";
+
+        ////////////////////////////////// Input metoder ////////////////////////////////////
+        public static int PromptUserForNumericalInput(bool inputIsAge)
         {
             int output = 0;
             bool waitingForCorrectInput = true;
-            string continueText = "Klicka på valfri tangent för att fortsätta";
-            string attributeName = "";
-            if (isInputAge)
-            {
-                attributeName = "ålder";
-            }
-            else
+            
+            string attributeName = "ålder";
+            if (!inputIsAge)
             {
                 attributeName = "antalet personer";
             }
-
+           
             while (waitingForCorrectInput)
             {
                 try
@@ -34,8 +33,8 @@ namespace Flow_Control
                     if (string.IsNullOrEmpty(input))
                     {
                         Console.WriteLine
-                            ("Var vänlig och använd siffor för att ange " + attributeName + "\n\n"
-                            + continueText);
+                            ("Var vänlig och använd siffor för att ange " + 
+                            attributeName +  continueText);
                         Console.ReadLine();
                         Console.Clear();
                     }
@@ -48,7 +47,7 @@ namespace Flow_Control
                             if (output < 0)
                             {
                                 Console.WriteLine
-                                    ("Var vänlig och undvik negativa tal\n\n" + continueText);
+                                    ("Var vänlig och undvik negativa tal" + continueText);
                                 Console.ReadLine();
                                 Console.Clear();
                             }
@@ -119,7 +118,13 @@ namespace Flow_Control
             return output;
                       
         }
-  
+
+        /////////////////////////////////////////////////////////////////////////////////////
+        
+        
+        ///////////////////////////////////// Menyval 2 /////////////////////////////////////
+
+
         public static void CalculateTicketPrice(bool InGroup)
         {
             Console.Clear();
@@ -153,6 +158,11 @@ namespace Flow_Control
 
         public static int GetPrice(int age)
         {
+            if (age < 5 || age > 100) 
+            { 
+                return 0; 
+            }
+
             if (age < 20)
             {
                 return 80;
@@ -171,7 +181,11 @@ namespace Flow_Control
 
         public static string GetOutputFromPrice(int price)
         {
-            if (price == 80)
+            if (price == 0)
+            {
+                return "Barn under fem och pensionärer över 100 går gratis.";
+            }
+            else if (price == 80)
             {
                 return "Ungdomspris: " + price;
             }
@@ -191,5 +205,65 @@ namespace Flow_Control
                 return "Total kostnad: " + price;
             }
         }
+
+        /////////////////////////////////////////////////////////////////////////////////////
+
+        public static string RemoveFirstAndLastSpace (string input)
+        {
+            string output = "";
+            int firstOccurensOfLetter = 0, 
+                lastOccurensOfLetter = input.Length - 1;
+           
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] != ' ')
+                {
+                    if (i != 0)
+                    {
+                        firstOccurensOfLetter = i;
+                        break;
+                    }
+                }
+            }
+
+            for (int j = input.Length - 1; j >= 0; j--)
+            {
+                if (input[j] != ' ')
+                {
+                    if (j != input.Length - 1)
+                    {
+                        lastOccurensOfLetter = j;
+                        break;
+                    }                 
+                }
+            }
+
+            int newStringLength = lastOccurensOfLetter - firstOccurensOfLetter;
+
+            output = input.Substring(firstOccurensOfLetter, newStringLength + 1);
+
+            return output;
+        }
+
+        public static string RemoveWhereSpaceOccursMoreThanOnce(string input)
+        {
+            string output = Convert.ToString(input[0]);
+            
+            for (int i = 1; i < input.Length; i++)
+            {        
+                if ((input[i] == ' ') && (input[i - 1] == ' ')) 
+                {
+                    continue;
+                }
+
+                output += input[i];
+            }
+
+            return output;
+            
+        }
+
+
     }
 }

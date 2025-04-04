@@ -88,8 +88,8 @@ internal class Menu
                     Console.WriteLine
                         (
                             "Felaktiga tangenter har använts, var vänlig och använd " +
-                            "piltangenterna och ENTER för att bekräfta ett val.\n\n" +
-                            "Klicka på valfri tangent för att fortsätta..."
+                            "piltangenterna och ENTER för att bekräfta ett val." +
+                            AppUtilities.continueText
                         );
                     Console.ReadLine();
                     break;
