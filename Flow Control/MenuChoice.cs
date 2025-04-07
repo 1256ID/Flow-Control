@@ -14,8 +14,9 @@ internal class MenuChoice
 
     /*
      
-        Metoden CalculateTicketPrice() har samma struktur som Main metoden 
-        då den också använder sig av 'Display()' och en switch-statement.
+        Metoden CalculateTicketPrice() följer samma struktur som Main metoden 
+        och fungerar i princip på samma sätt med skillnaden att annourlunda
+        metoder anropas.
 
     */
 
@@ -54,6 +55,23 @@ internal class MenuChoice
         }
     }
 
+    /* 
+        Menyval 2 - 3
+
+        Eftersom att det inte krävs särskilt mycket kod för dessa menyval så 
+        har jag valt att lägga större delar av logiken inuti dessa metoder.
+
+        Med undantag menyval 3 där jag ansåg att en del logik kunde flyttas 
+        ut till class:en AppUtilities.
+        
+        **** Menyval 2 ****
+
+        Denna metod använder sig av min 'Prompt' metod för att ta emot en
+        input från användaren som sedan skrivs ut med en Console.Write();
+        i en for-loop 10 gånger. Jag använder mig även av i och extra text      
+        "\n\n" för att få fram förväntad output.
+        
+    */
     public static void PrintInput_OnTheSameLine_TenTimes()
     {
         string input = AppUtilities.PromptUserForTextInput();
@@ -67,6 +85,29 @@ internal class MenuChoice
         Console.WriteLine("\n\n" + returnToMenuText);
         Console.ReadLine();
     }
+
+
+    /*
+        **** Menyval 3 ****
+        
+        I denna metod används först 'Prompt' metoden för att ta in
+        en sträng från användaren. Strängen i sig går sedan igenom
+        metoderna 
+
+        - RemoveFirstAndLastSpace()
+        - RemoveWhereSpaceOccursMoreThanOnce()
+
+        För att ta bort övriga mellanslag.
+
+        Metoden kollar sedan ifall input är lika med eller längre
+        än tre ord. Om inte så får användaren default output från
+        metoden vilket tilldelas i början av metoden.
+
+        Annars så tar tilldelas tredje ordet/strängen till output 
+        och användaren får se vad tredje ordet är.
+
+     
+    */
 
     public static void PrintTheThirdWord()
     {
