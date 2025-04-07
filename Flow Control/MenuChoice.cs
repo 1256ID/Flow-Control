@@ -6,10 +6,20 @@ using System.Threading.Tasks;
 
 namespace Flow_Control;
 
+// Denna klass innehåller att logik för själva menyvalen i menyn.
+
 internal class MenuChoice
 {
     public static string returnToMenuText = "\n\nKlicka på valfri tangent för att återvänta till menyn...";
-    public static void One()
+
+    /*
+     
+        Metoden CalculateTicketPrice() har samma struktur som Main metoden 
+        då den också använder sig av 'Display()' och en switch-statement.
+
+    */
+
+    public static void CalculateTicketPrice()
     {
         int index = 0;
         bool cinemaIsActive = true;
@@ -44,7 +54,7 @@ internal class MenuChoice
         }
     }
 
-    public static void Two()
+    public static void PrintInput_OnTheSameLine_TenTimes()
     {
         string input = AppUtilities.PromptUserForTextInput();
         Console.Clear();
@@ -58,18 +68,18 @@ internal class MenuChoice
         Console.ReadLine();
     }
 
-    public static void Three()
+    public static void PrintTheThirdWord()
     {
-        string outputMessage = "Var vänlig och använd minst 3 ord.";
+        string outputMessage = "Var vänlig och skriv in en mening, använd minst 3 ord.";
         var input = AppUtilities.PromptUserForTextInput();
         input = AppUtilities.RemoveFirstAndLastSpace(input);
-        input = AppUtilities.RemoveWhereSpaceOccursMoreThanOnce(input);     
-
+        input = AppUtilities.RemoveWhereSpaceOccursMoreThanOnce(input);
+        
         string[] stringArray = input.Split(" ");
 
         if (stringArray.Length >= 3) 
         {
-            outputMessage = stringArray[^1];
+            outputMessage = stringArray[2];
         }
 
         Console.WriteLine(outputMessage);
