@@ -177,6 +177,8 @@ internal class AppUtilities
         Console.ReadLine();
     }
 
+    // Returnerar pris baserat på ålder.
+
     public static int GetPrice(int age)
     {
         if (age < 5 || age > 100) 
@@ -200,6 +202,7 @@ internal class AppUtilities
         }
     }
 
+    // Returnerar meddelandet/output message baserat på pris.
     public static string GetOutputFromPrice(int price)
     {
         if (price == 0)
@@ -229,6 +232,7 @@ internal class AppUtilities
 
     /////////////////////////////////////////////////////////////////////////////////////
 
+    // Tar bort mellanslag i början och slutet av input-strängen.
     public static string RemoveFirstAndLastSpace (string input)
     {
         string output = "";
@@ -263,6 +267,10 @@ internal class AppUtilities
         return output;
     }
 
+    // Kollar ifall det existerar mer än ett mellanslag mellan orden/strängarna.
+    // Om detta är sant så sparas bara ett mellanslag mellan orden i den output
+    // strängen.
+
     public static string RemoveWhereSpaceOccursMoreThanOnce(string input)
     {
         string output = Convert.ToString(input[0]);
@@ -280,6 +288,9 @@ internal class AppUtilities
         return output;
         
     }
+
+    // Bara en extra funktion, gör så att ett ljud spelas upp när piltangenterna
+    // används för att navigera i menyn.
 
     public static void PlayMenuSound()
     {        
